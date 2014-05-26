@@ -1,14 +1,10 @@
 package test;
-// Import the basic graphics classes.  
- // The problem here is that we read the image with OpenCV into a Mat object.  
- // But OpenCV for java doesn't have the method "imshow", so, we got to use  
- // java for that (drawImage) that uses Image or BufferedImage (?)  
- // So, how to go from one the other...  
+
  import java.awt.*;  
 import java.awt.image.BufferedImage;  
 import javax.swing.*;  
  import org.opencv.core.Core;
-//import org.opencv.core.Core;  
+
  import org.opencv.core.Mat;  
 import org.opencv.highgui.Highgui;  
  public class Panel extends JPanel{  

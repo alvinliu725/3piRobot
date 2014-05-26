@@ -8,7 +8,7 @@ import javax.swing.*;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;  
 import org.opencv.highgui.VideoCapture;  
-import test.mainConsole;
+import test.Panel;
 
  public class mainConsole extends JPanel{  
    private static final long serialVersionUID = 1L;  
@@ -75,7 +75,7 @@ import test.mainConsole;
     frame.setVisible(true);       
     Mat webcam_image=new Mat();  
     BufferedImage temp;  
-    VideoCapture capture =new VideoCapture(1);  
+    VideoCapture capture =new VideoCapture(0);  
     if( capture.isOpened())  
      {  
       while( true )  
