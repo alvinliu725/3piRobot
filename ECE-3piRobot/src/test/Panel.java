@@ -1,12 +1,12 @@
-package test;
+ package test;
 
  import java.awt.*;  
-import java.awt.image.BufferedImage;  
-import javax.swing.*;  
+ import java.awt.image.BufferedImage;  
+ import javax.swing.*;  
  import org.opencv.core.Core;
 
  import org.opencv.core.Mat;  
-import org.opencv.highgui.Highgui;  
+ import org.opencv.highgui.Highgui;  
  public class Panel extends JPanel{  
    private static final long serialVersionUID = 1L;  
    String pic_name="camera.jpg";  
@@ -56,14 +56,4 @@ import org.opencv.highgui.Highgui;
    public void paintComponent(Graphics g){  
       g.drawImage(image,50,10,400,400, this);  
    }  
-   public static void main(String arg[]){  
-    // Load the native library.  
-    System.loadLibrary(Core.NATIVE_LIBRARY_NAME);    
-    JFrame frame = new JFrame("BasicPanel");  
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-    frame.setSize(400,400);  
-    Panel panel = new Panel();  
-    frame.setContentPane(panel);       
-    frame.setVisible(true);           
-  }  
  }  
