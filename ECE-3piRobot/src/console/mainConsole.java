@@ -1,4 +1,4 @@
-package test;
+package console;
 
 
 import java.awt.*;  
@@ -14,10 +14,11 @@ import org.opencv.core.Mat;
 import org.opencv.highgui.Highgui;
 import org.opencv.highgui.VideoCapture;  
 
+import console.ButtonPanel;
 
  public class mainConsole extends JPanel{  
 
-   private BufferedImage image;  
+   private BufferedImage image = null;  
    // Create a constructor method  
    public mainConsole(){  
      super();  
@@ -31,40 +32,44 @@ import org.opencv.highgui.VideoCapture;
    }  
  
    public void paintComponent(Graphics g){  
-      BufferedImage temp=getimage();  
-      g.drawImage(temp,10,10,temp.getWidth(),temp.getHeight(), this);  
+      BufferedImage temp=getimage(); 
+      if(temp!=null)
+         g.drawImage(temp,10,10,temp.getWidth()+5,temp.getHeight()+5, this);  
    }  
-  
+   
+   
    public static void main(String arg[]){  
     // Load the native library.  
     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);    
     JFrame frame = new JFrame("3piRobot");  
+    frame.setLayout(new FlowLayout());
+    frame.setVisible(true); 
+    frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-    frame.setSize(640,480);  
+    frame.setSize(1200,800);  
     mainConsole panel = new mainConsole();  
-    frame.setContentPane(panel);       
-    frame.setVisible(true);       
+    frame.setContentPane(panel);  
+    //ButtonPanel buttonP = new ButtonPanel();
+   // panel.add(buttonP);
     Mat webcam_image=new Mat();  
     BufferedImage temp=null;  
-    VideoCapture capture =new VideoCapture(0);  
-    if( capture.isOpened())  
-     {  
+    VideoCapture capture = new VideoCapture(0);  
+
+    if(capture.isOpened())  
+     {
       while( true )  
-      {  
+      {    
         capture.read(webcam_image);  
         if( !webcam_image.empty() )  
          {  
-           System.out.println("Camera Connection OK - Stream Testing.............");
-           frame.setSize(webcam_image.width()+40,webcam_image.height()+40);  
-           Highgui.imwrite("camera.jpg", webcam_image);
+           Highgui.imwrite("cameraTemp.jpg", webcam_image);
            try {
-			temp=ImageIO.read(new File("camera.jpg"));
+			temp=ImageIO.read(new File("cameraTemp.jpg"));
 		   } 
            catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("Read the camera failed");
 		   }
-           
            panel.setimage(temp);  
            panel.repaint();  
          }  
@@ -74,9 +79,10 @@ import org.opencv.highgui.VideoCapture;
            break;  
          }  
         }  
-       }  
-       return;  
+       } 
+       
    }  
+
  }  
  
 
